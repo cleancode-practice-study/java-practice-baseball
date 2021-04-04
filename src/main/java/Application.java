@@ -7,9 +7,12 @@ public class Application {
 
 		boolean replay = true;
 		int replayNum = 0;
+		int[] arr;
 
 		while(replay) {
-			game.GameStart();
+			game.setComNum();
+			game.playGame();
+
 			replayNum = scanner.nextInt();
 			if(replayNum == 1) {
 				replay = true;
