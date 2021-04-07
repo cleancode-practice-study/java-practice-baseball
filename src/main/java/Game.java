@@ -10,9 +10,10 @@ public class Game {
 
     public void PlayerGNum() {
         guessNum = scanner.next(); // String 으로 숫자 입력 받은 뒤
+        String[] array = guessNum.split(""); // string 배열로 변환
 
         for(int i = 0; i<Player.length; i++){
-            Player[i] = guessNum.charAt(i) - '0'; // 배열로 변환
+            Player[i] = Integer.parseInt(array[i]); // string 배열을 int 배열로 변환
         }
     }
 
@@ -21,7 +22,7 @@ public class Game {
         ball = 0;
 
         for (int i = 0; i < Cmp.length; i++) {
-            for (int j = 0; j < Player.length; i++) {
+            for (int j = 0; j < Player.length; j++) {
                 if (Cmp[i] == Player[j] && i == j) {
                     strike++;
                 } else if (Cmp[i] == Player[j] && i != j) {
