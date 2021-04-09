@@ -16,7 +16,10 @@ public class Application {
 
 			if(replayNum == 1) {
 				run = true;
-			} else if(replayNum == 2) break;
+			} else if(replayNum == 2) {
+				run = false;
+			}
+
 		}
 
 
