@@ -5,20 +5,18 @@ public class Application {
 		final Scanner scanner = new Scanner(System.in);
 		BaseballGame game = new BaseballGame();
 
-		boolean replay = true;
+		boolean run = true;
 		int replayNum = 0;
-		int[] arr;
 
-		while(replay) {
+		while(run) {
 			game.setComNum();
 			game.playGame();
 
 			replayNum = scanner.nextInt();
+
 			if(replayNum == 1) {
-				replay = true;
-			} else if(replayNum == 2) {
-				replay = false;
-			}
+				run = true;
+			} else if(replayNum == 2) break;
 		}
 
 
