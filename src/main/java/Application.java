@@ -1,19 +1,20 @@
 import java.util.Scanner;
 
 public class Application {
+	public static final int REPLAY = 1;
+	public static final int CLOSE = 2;
 	public static void main(String[] args) {
 		final Scanner scanner = new Scanner(System.in);
-
-		Game g = new Game();
+		BaseballGame baseballgame = new BaseballGame();
 		boolean run = true;
 
 		while (run) {
-			g.Start();
+			baseballgame.start();
 
-			int replayGame = scanner.nextInt();
-			if (replayGame == 1) {
+			int game = scanner.nextInt();
+			if (game == REPLAY) {
 				run = true;
-			} else if (replayGame == 2) {
+			} else if (game == CLOSE) {
 				run = false;
 			}
 		}
