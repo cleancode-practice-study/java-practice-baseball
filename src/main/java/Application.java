@@ -1,27 +1,33 @@
 import java.util.Scanner;
 
 public class Application {
-	public static void main(String[] args) {
-		final Scanner scanner = new Scanner(System.in);
-		BaseballGame game = new BaseballGame();
 
-		boolean run = true;
-		int replayNum = 0;
+    public static final int REPLAY_GAME = 1;
 
-		while(run) {
-			game.setComNum();
-			game.playGame();
+    public static final int STOP_GAME = 2;
 
-			replayNum = scanner.nextInt();
+    public static void main(String[] args) {
 
-			if(replayNum == 1) {
-				run = true;
-			} else if(replayNum == 2) {
-				run = false;
-			}
+        final Scanner scanner = new Scanner(System.in);
 
-		}
+        BaseballGame game = new BaseballGame();
 
+        int replayNum = 0;
+        boolean run = true;
 
-	}
+        while (run) {
+            game.setComNum();
+            game.playGame();
+
+            replayNum = scanner.nextInt();
+
+            if (replayNum == REPLAY_GAME) {
+                run = true;
+            } else if (replayNum == STOP_GAME) {
+                run = false;
+            }
+
+        }
+
+    }
 }

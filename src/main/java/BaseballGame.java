@@ -2,14 +2,16 @@ import java.util.Scanner;
 
 public class BaseballGame {
 
-    private int player[] = new int[3];
-    private int targetNum[] = new int[3];
+    public static final int STRIKE_NUM = 3;
+
     private int ball;
     private int strike;
-    private int num = 0;
+    private int getInput = 0;
+
+    private int player[] = new int[3];
+    private int targetNum[] = new int[3];
 
     boolean gameRun = true;
-
 
     Scanner scanner = new Scanner(System.in);
 
@@ -29,43 +31,39 @@ public class BaseballGame {
 
         System.out.print("숫자를 입력해주세요 : ");
 
-        while(gameRun) {
+        while (gameRun) {
 
             ball = 0;
             strike = 0;
 
-            num = Integer.parseInt(scanner.nextLine()); //값 받기
+            getInput = Integer.parseInt(scanner.nextLine()); //값 받기
 
-            player[0] = num/100; //첫 번째 숫자 넣기
-            num = num%100;
-            player[1] = num/10;  //두 번째 숫자 넣기
-            player[2] = num%10;  //세 번째 숫자 넣기
+            player[0] = getInput / 100; //첫 번째 숫자 넣기
+            getInput = getInput % 100;
+            player[1] = getInput / 10;  //두 번째 숫자 넣기
+            player[2] = getInput % 10;  //세 번째 숫자 넣기
 
-
-
-            for(int i = 0 ; i < targetNum.length ; i++) {
-                for(int j = 0 ; j < player.length ; j++) {
-                    if(targetNum[i] == player[j] && i == j) {
+            for (int i = 0; i < targetNum.length; i++) {
+                for (int j = 0; j < player.length; j++) {
+                    if (targetNum[i] == player[j] && i == j) {
                         strike++;
-                    }
-                    else if(targetNum[i] == player[j] && i != j) {
+                    } else if (targetNum[i] == player[j] && i != j) {
                         ball++;
                     }
                 }
             }
 
-            if(strike > 0 && ball > 0) {
+            if (strike > 0 && ball > 0) {
                 System.out.println(strike + "스트라이크 " + ball + "볼 ");
-            } else if(strike > 0 && ball == 0) {
+            } else if (strike > 0 && ball == 0) {
                 System.out.println(strike + "스트라이크");
-            } else if(strike == 0 && ball > 0) {
+            } else if (strike == 0 && ball > 0) {
                 System.out.println(ball + "볼");
-            } else if(strike == 0 && ball ==0) {
+            } else if (strike == 0 && ball == 0) {
                 System.out.println("Nothing");
             }
 
-
-            if(strike >= 3) {
+            if (strike >= STRIKE_NUM) {
                 System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료.");
                 gameRun = false;
             }
