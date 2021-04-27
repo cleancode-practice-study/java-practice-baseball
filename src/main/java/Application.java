@@ -2,9 +2,8 @@ import java.util.Scanner;
 
 public class Application {
 
-    public static final int REPLAY_GAME = 1;
-
-    public static final int STOP_GAME = 2;
+    private static final int REPLAY_GAME = 1;
+    private static final int STOP_GAME = 2;
 
     public static void main(String[] args) {
 
