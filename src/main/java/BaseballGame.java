@@ -1,26 +1,16 @@
-//import java.util.ArrayList;
-
-import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Set;
 
 public class BaseballGame {
 
-    public static final int STRIKE_NUM = 3;
-    public static final int NUM_LENGTH = 3;
-
-    private int ball;
-    private int strike;
-    private int getInput = 0;
-
-    private int player[] = new int[NUM_LENGTH];
-    private int targetNum[] = new int[NUM_LENGTH];
+    private static final int STRIKE_NUM = 3;
+    private static final int NUM_LENGTH = 3;
 
     private boolean gameRun = true;
 
     Scanner scanner = new Scanner(System.in);
 
-    public void setComNum() {
+    public int[] setComNum() {
+        int targetNum[] = new int[NUM_LENGTH];
         for (int i = 0; i < targetNum.length; i++) {
             targetNum[i] = (int) ((Math.random() * 9) + 1);
             for (int j = 0; j < i; j++) {//중복되는 숫자 나올시 다시 뽑기
@@ -29,21 +19,48 @@ public class BaseballGame {
                 }
             }
         }
+        return targetNum;
     }
 
-    public void countResult() {
+    public int[] getUserNum() {
+        int getInput = 0;
+        getInput = Integer.parseInt(scanner.nextLine()); //값 받기
+
+        int player[] = new int[NUM_LENGTH];
+
+        player[0] = getInput / 100; //첫 번째 숫자 넣기
+        getInput = getInput % 100;
+        player[1] = getInput / 10;  //두 번째 숫자 넣기
+        player[2] = getInput % 10;  //세 번째 숫자 넣기
+
+        return player;
+    }
+
+    public int countBall(int[] targetNum, int[] player) {
+        int ball = 0;
         for (int i = 0; i < targetNum.length; i++) {
             for (int j = 0; j < player.length; j++) {
-                if (targetNum[i] == player[j] && i == j) {
-                    strike++;
-                } else if (targetNum[i] == player[j] && i != j) {
+                if (targetNum[i] == player[j] && i != j) {
                     ball++;
                 }
             }
         }
+        return ball;
     }
 
-    public void showResult() {
+    public int countStrike(int[] targetNum, int[] player ) {
+        int strike = 0;
+        for (int i = 0; i < targetNum.length; i++) {
+            for (int j = 0; j < player.length; j++) {
+                if (targetNum[i] == player[j] && i == j) {
+                    strike++;
+                }
+            }
+        }
+        return strike;
+    }
+
+    public void showResult(int ball, int strike) {
         if (strike > 0 && ball > 0) {
             System.out.println(strike + "스트라이크 " + ball + "볼 ");
         } else if (strike > 0 && ball == 0) {
@@ -61,25 +78,24 @@ public class BaseballGame {
     }
 
     public void playGame() {
+        int[] targetNum;
+        int[] userNum;
+
+        targetNum = setComNum();
 
         System.out.print("숫자를 입력해주세요 : ");
 
         while (gameRun) {
+            int ball = 0;
+            int strike = 0;
 
-            ball = 0;
-            strike = 0;
+            userNum = getUserNum();
 
-            getInput = Integer.parseInt(scanner.nextLine()); //값 받기
+            ball = countBall(targetNum, userNum);
 
-            player[0] = getInput / 100; //첫 번째 숫자 넣기
-            getInput = getInput % 100;
-            player[1] = getInput / 10;  //두 번째 숫자 넣기
-            player[2] = getInput % 10;  //세 번째 숫자 넣기
+            strike = countStrike(targetNum, userNum);
 
-            countResult();
-
-            showResult();
-
+            showResult(ball, strike);
         }
 
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");

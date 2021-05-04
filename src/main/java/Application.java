@@ -15,7 +15,6 @@ public class Application {
         boolean run = true;
 
         while (run) {
-            game.setComNum();
             game.playGame();
 
             replayNum = scanner.nextInt();
@@ -25,8 +24,6 @@ public class Application {
             } else if (replayNum == STOP_GAME) {
                 run = false;
             }
-
         }
-
     }
 }
