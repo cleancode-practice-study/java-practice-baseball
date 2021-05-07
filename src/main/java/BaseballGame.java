@@ -78,22 +78,17 @@ public class BaseballGame {
     }
 
     public void playGame() {
-        int[] targetNum;
-        int[] userNum;
-
-        targetNum = setComNum();
+        int[] targetNum = setComNum();
 
         System.out.print("숫자를 입력해주세요 : ");
 
         while (gameRun) {
-            int ball = 0;
-            int strike = 0;
 
-            userNum = getUserNum();
+            int[] userNum = getUserNum();
 
-            ball = countBall(targetNum, userNum);
+            int ball = countBall(targetNum, userNum);
 
-            strike = countStrike(targetNum, userNum);
+            int strike = countStrike(targetNum, userNum);
 
             showResult(ball, strike);
         }

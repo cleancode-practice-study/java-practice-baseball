@@ -11,13 +11,12 @@ public class Application {
 
         BaseballGame game = new BaseballGame();
 
-        int replayNum = 0;
         boolean run = true;
 
         while (run) {
             game.playGame();
 
-            replayNum = scanner.nextInt();
+            int replayNum = scanner.nextInt();
 
             if (replayNum == REPLAY_GAME) {
                 run = true;
