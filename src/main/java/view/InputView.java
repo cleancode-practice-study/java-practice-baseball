@@ -13,10 +13,11 @@ public class InputView {
         System.out.println(INPUT_NUMBER_MESSAGE);
 
         try {
-            return scanner.nextLine();
-        } catch (InputMismatchException exception) {
+            String inputNumber = scanner.next();
+            Integer.parseInt(inputNumber);
+            return inputNumber;
+        } catch (InputMismatchException | NumberFormatException exception) {
             System.out.println(INPUT_NUMBER_ERROR_MESSAGE);
-            scanner.next();
             return getUserNumber();
         }
 
