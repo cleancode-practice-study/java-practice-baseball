@@ -1,3 +1,5 @@
+import controller.Controller;
+
 import java.util.Scanner;
 
 public class Application {
@@ -5,6 +7,7 @@ public class Application {
 		final Scanner scanner = new Scanner(System.in);
 
 		// TODO 구현 진행
+		Controller.getUserInput();
 
 	}
 }
