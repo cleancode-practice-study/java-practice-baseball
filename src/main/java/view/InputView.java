@@ -9,11 +9,11 @@ public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static int getUserNumber() {
+    public static String getUserNumber() {
         System.out.println(INPUT_NUMBER_MESSAGE);
 
         try {
-            return scanner.nextInt();
+            return scanner.nextLine();
         } catch (InputMismatchException exception) {
             System.out.println(INPUT_NUMBER_ERROR_MESSAGE);
             scanner.next();
